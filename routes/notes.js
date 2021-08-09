@@ -6,12 +6,14 @@ const {updateNote} = require('../controllers/updateNote');
 const {deleteNote} = require('../controllers/deleteNote');
 const {verifytoken} = require("../middlewares/authmiddleware");
 const { noteidparam } = require('../middlewares/noteidparam');
+const { getNote } = require('../controllers/getnote');
 
 router.param("noteId", noteidparam);
 
 router.post("/add", verifytoken, addnote);
 router.get("/getNotes", verifytoken, getNotes);
 router.put("/update/:noteId", verifytoken, updateNote);
-router.delete("/delete/:noteId", deleteNote);
+router.delete("/delete/:noteId", verifytoken, deleteNote);
+router.get("/getNote/:noteId", verifytoken, getNote );
 
 module.exports = router;
