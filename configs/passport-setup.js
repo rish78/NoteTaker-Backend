@@ -13,7 +13,7 @@ passport.use(
       {
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: "/auth/google/redirect",
+        callbackURL: "https://infinite-coast-54217.herokuapp.com/auth/google/redirect",
       },
       
       // function to get profile details and a call back function
