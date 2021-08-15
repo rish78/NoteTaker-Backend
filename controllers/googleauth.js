@@ -31,11 +31,8 @@ exports.googleredirect = (req,res) => {
                     },
                     process.env.SECRET_KEY
                   );
-                  res.status(200).json({
-                    message: "User logged in successfully",
-                    token: token,
-                });
-                res.status(200).redirect(`http://127.0.0.1:5500/pages/dashboard/dashboard.html?token=${token}`);
+
+                res.status(200).redirect(`https://lazy-notetaker.netlify.app/pages/dashboard/dashboard.html?token=${token}`);
                 
             }
             else{
@@ -47,11 +44,7 @@ exports.googleredirect = (req,res) => {
                         },
                         process.env.SECRET_KEY
                         );
-                        res.status(200).json({
-                            message: "User registered successfully",
-                            token: token,
-                        });
-                        res.redirect("http://127.0.0.1:5500/pages/dashboard/dashboard.html?token=${token}");
+                        res.redirect(`https://lazy-notetaker.netlify.app/pages/dashboard/dashboard.html?token=${token}`);
                     })
                     .catch((err) => {
                         console.log(err);
