@@ -28,9 +28,11 @@ exports.signin = (req, res) => {
                     process.env.SECRET_KEY
                     );
 
+                    
+
                     res.status(200).json({
                         message: "User logged in successfully",
-                        token: token,
+                        token:token,
                     });
                 }
                 else{
@@ -44,7 +46,7 @@ exports.signin = (req, res) => {
     .catch((err) => {
         console.log(err);
         res.status(500).json({
-            error: "Databse error occured",
+            error: "Database error occured",
         })
     });
 

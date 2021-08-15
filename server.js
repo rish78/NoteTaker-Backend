@@ -6,6 +6,7 @@ const noteRoutes = require('./routes/notes');
 const client = require('./configs/db');
 require("./configs/passport-setup");
 const passport = require('passport');
+const cookieParser = require('cookie-parser')
 // const passport = require("passport");
 
 const app = express();
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(passport.initialize());
+app.use(cookieParser());
 
 const port = process.env.PORT || 8000;
 

@@ -5,6 +5,7 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const client = require("./db");
 
 
 passport.use(
@@ -16,9 +17,11 @@ passport.use(
       },
       
       // function to get profile details and a call back function
-      function (accessToken, refreshToken, profile, done) {
-        console.log(`${process.env.CLIENT_ID}`);
+      (accessToken, refreshToken, profile, done) => {
+       
         return done(null, profile);
+         
+        
       }
     )
   );

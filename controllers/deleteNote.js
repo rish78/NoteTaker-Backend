@@ -11,6 +11,6 @@ exports.deleteNote = (req,res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.status(500).json({message: "Database Error"});
+            res.status(500).json({error: "Database Error"});
         })
 }

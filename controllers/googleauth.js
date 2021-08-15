@@ -16,26 +16,27 @@ require("../configs/passport-setup");
 // }
 
 exports.googleredirect = (req,res) => {
-    app.use(passport.initialize());
+    
     const firstname = req.user.name.givenName;
     const email = req.user.emails[0].value;
-
+    console.log("here");
     client
         .query(`SELECT * FROM users WHERE email = '${email}';`)
         .then((data) => {
             if(data.rows.length != 0){
+                
                 const token = jwt.sign(
                     {
                       email: email
                     },
                     process.env.SECRET_KEY
                   );
-
-                res.status(200).json({
-                    message: "User logged in!",
-                    token:token,
-                    username: firstname
-                })
+                  res.status(200).json({
+                    message: "User logged in successfully",
+                    token: token,
+                });
+                res.status(200).redirect(`http://127.0.0.1:5500/pages/dashboard/dashboard.html?token=${token}`);
+                
             }
             else{
                 client
@@ -50,6 +51,7 @@ exports.googleredirect = (req,res) => {
                             message: "User registered successfully",
                             token: token,
                         });
+                        res.redirect("http://127.0.0.1:5500/pages/dashboard/dashboard.html?token=${token}");
                     })
                     .catch((err) => {
                         console.log(err);

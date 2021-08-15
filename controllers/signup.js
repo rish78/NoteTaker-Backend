@@ -91,9 +91,10 @@ exports.signup = (req,res) => {
                     .query(`INSERT INTO users (name, email, password) VALUES ('${user.name}', '${user.email}', '${user.password}');`)
                     .then((data) => {
                         console.log(data);
+                        
                         res.status(200).json({
                             message: "User registered successfully",
-                            token: token,
+                            token:token,
                         });
                     })
                     .catch((err) => {

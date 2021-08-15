@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 exports.resetpassword = (req, res) => {
     const resetLink = req.params.token;
 
+    console.log(resetLink);
+
     const {newPassword} = req.body;
     console.log(newPassword);
 
