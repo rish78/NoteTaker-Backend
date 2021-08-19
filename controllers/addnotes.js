@@ -12,6 +12,6 @@ exports.addnote = (req,res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.status(500).json({message: "Database error"});
+            res.status(500).json({error: "Database error"});
         })
 }

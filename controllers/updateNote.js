@@ -7,7 +7,9 @@ exports.updateNote = (req,res) => {
     .query(`SELECT * FROM notes WHERE noteid=${noteId}`)
     .then((data) => {
         const email = data.rows[0].email;
+        console.log(email, req.email);
         if(email === req.email){
+            
             client
                 .query(`UPDATE notes SET heading = '${heading}' , content = '${content}' WHERE noteid = '${noteId}';`)
                 .then((data) =>{
@@ -15,7 +17,7 @@ exports.updateNote = (req,res) => {
                 })
                 .catch((err) =>{
                     console.log(err);
-                    res.status(500).json({message: "Database Error"});
+                    res.status(500).json({error: "Database Error"});
                 })
         }
         else{
@@ -27,7 +29,7 @@ exports.updateNote = (req,res) => {
     })
     .catch((err) =>{
         console.log(err);
-        res.status(500).json({message: "Database Error"});
+        res.status(500).json({error: "Database Error"});
     })
     
 }

@@ -10,7 +10,7 @@ exports.forgotpassword = (req,res) => {
         .query(`SELECT * FROM users WHERE email = '${email}';`)
         .then((data) => {
             if(data.rows.length===0){
-                res.status(400).json({message:"Email does not exist"});
+                res.status(400).json({error:"Email does not exist"});
             }
 
             const username = data.rows[0].name;
@@ -96,17 +96,19 @@ exports.forgotpassword = (req,res) => {
                                                                   
             transporter.sendMail(mail, function (err, info) {                                        //Sending a mail only if flag is true
                 if (err) {
-                    console.log(`error in sending mail: ${err}`);
+                  console.log(`Error in sending mail: ${err}`);
+                    res.status(500).json({error:`Error in sending mail!`});
                 } else {
                     console.log("Email sent");
+                    res.status(200).send({
+                      message: "Check your mail", 
+                      resetLink: resetLink,
+                  })
                 }
                 transporter.close();
             });
-
-            res.status(200).send({
-                message: "Check your mail", 
-                resetLink: resetLink,
-            })
+            
+            
         })
         .catch((err) => {
             console.log(err);

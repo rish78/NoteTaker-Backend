@@ -43,7 +43,7 @@ exports.signup = (req,res) => {
     .then((data) => {
         console.log(data);
         if (data.rows.length != 0) {
-            res.status(400).json({message: "User already exists"})
+            res.status(400).json({error: "User already exists"})
         }
         else{
     
@@ -93,14 +93,14 @@ exports.signup = (req,res) => {
                         console.log(data);
                         
                         res.status(200).json({
-                            message: "User registered successfully",
+                            message: "User registered successfully!",
                             token:token,
                         });
                     })
                     .catch((err) => {
                         console.log(err);
                         res.status(500).json({
-                            error: "Databse error occured",
+                            error: "Databse error occured!",
                         })
                     })
     
@@ -112,7 +112,7 @@ exports.signup = (req,res) => {
     .catch((err) => {
         console.log(err);
         res.status(500).json({
-            error: "Databse error occured",
+            error: "Database error occured!",
         })
     });
 

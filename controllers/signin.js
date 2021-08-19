@@ -11,7 +11,7 @@ exports.signin = (req, res) => {
     .query(`SELECT * FROM users WHERE email = '${email}';`)
     .then((data) => {
         if (data.rows.length === 0) {
-            res.status(400).json({message: "User does not exist, sign up instead!"})
+            res.status(400).json({error: "User does not exist, sign up instead!"})
         }
         else{
 
@@ -19,7 +19,7 @@ exports.signin = (req, res) => {
                 // result == true
                 if(err){
                     console.log(err);
-                    res.status(500).json({message:"Internal Server Error"});
+                    res.status(500).json({error:"Internal Server Error!"});
                 }
                 else if(result===true){
                     const token = jwt.sign({
@@ -31,12 +31,12 @@ exports.signin = (req, res) => {
                     
 
                     res.status(200).json({
-                        message: "User logged in successfully",
+                        message: "User logged in!",
                         token:token,
                     });
                 }
                 else{
-                    res.status(400).json({message: "Incorrect password"})
+                    res.status(400).json({error: "Incorrect password!"})
                 }
 
             });
@@ -46,7 +46,7 @@ exports.signin = (req, res) => {
     .catch((err) => {
         console.log(err);
         res.status(500).json({
-            error: "Database error occured",
+            error: "Database error occured!",
         })
     });
 

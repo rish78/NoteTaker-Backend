@@ -19,7 +19,7 @@ exports.getNotes = (req,res) => {
     .catch((err) => {
         console.log(err);
         res.status(500).json({
-            message: "Database error occurred",
+            error: "Database error occurred while loading notes",
         })
     })
 }
